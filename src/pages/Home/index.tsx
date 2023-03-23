@@ -4,6 +4,11 @@ import { ReactComponent as Search } from "assets/icons/search.svg";
 import Menu from "components/Menu";
 import { RoutePath } from "types/routes";
 import { navigationItems } from "data/navegation";
+import GameItemList from "components/GamesItemList"
+import GameItem from "components/GameItem";
+import OrderDetails from "components/OrderDetails";
+import Overlay from "components/Overlay";
+import CheckoutSection from "components/CheckOutSection";
 
 
 
@@ -25,11 +30,11 @@ const Home = () => {
             <S.HomeHeaderDetailsLogo> Xbox-Live </S.HomeHeaderDetailsLogo>
             <S.HomeHeaderDetailsDate> {dateDescription} </S.HomeHeaderDetailsDate>
           </div>
-          <S.HomeHeaderDetailsSearch> 
-            
-          <Search/> 
-          <input type="text" placeholder="Procure pelo Game" /> </S.HomeHeaderDetailsSearch>
-          
+          <S.HomeHeaderDetailsSearch>
+
+            <Search />
+            <input type="text" placeholder="Procure pelo Game" /> </S.HomeHeaderDetailsSearch>
+
         </S.HomeHeaderDetails>
       </header>
       <div>
@@ -38,13 +43,22 @@ const Home = () => {
         </S.HomeProductTitle>
 
         <S.HomeProductList>
-          <p>Lista de Games aqui</p>
+          <GameItemList>
+            <GameItem/>
+          </GameItemList>
         </S.HomeProductList>
       </div>
     </S.HomeContent>
     <aside>
-      <p>Detalhes dos pedidos aqui</p>
+      <OrderDetails/>
     </aside>
+
+    <Overlay>
+
+      <CheckoutSection />
+
+    </Overlay>
+
   </S.Home>;
 };
 
