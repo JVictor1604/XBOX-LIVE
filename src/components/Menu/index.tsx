@@ -8,11 +8,13 @@ interface Menuprops {
 
   active: RoutePath;
   navItems: NavItem[];
+  onNavigate: (data: RoutePath) => void;
+  onLogout: () => void;
 
 }
 
 
-const Menu = ({active, navItems}: Menuprops) => {
+const Menu = ({ active, navItems, onNavigate, onLogout }: Menuprops) => {
   return (
     <S.Menu>
       <nav>
@@ -22,19 +24,22 @@ const Menu = ({active, navItems}: Menuprops) => {
 
         {navItems.map((item, index) => (
 
-        <S.MenuItem  key={`MenuItem-${index}`} active={item.path === active}>
-         
-          <S.MenuItemButton  active={item.path === active}> 
-          
-          {item.icon}  
-          
-          </S.MenuItemButton>
-        
-        </S.MenuItem>
+          <S.MenuItem key={`MenuItem-${index}`} active={item.path === active}>
+
+            <S.MenuItemButton
+
+              active={item.path === active}
+              onClick={() => onNavigate(item.path)}>
+
+              {item.icon}
+
+            </S.MenuItemButton>
+
+          </S.MenuItem>
 
         ))}
       </nav>
-      <S.MenuItemLogout>
+      <S.MenuItemLogout onClick={onLogout}>
         <Logout />
       </S.MenuItemLogout>
 

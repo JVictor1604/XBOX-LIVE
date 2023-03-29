@@ -74,12 +74,12 @@ const CheckoutSection = () => {
                             </select>
                         </S.PaymentActionsDetailsOrderType>
                         <S.PaymentActionsDetailsTableNumber>
-                            <label htmlFor="card">Número da mesa</label>
+                            <label htmlFor="card">Nome da Plataforma</label>
                             <input
                                 type="text"
                                 name="table"
                                 id="table"
-                                placeholder="01"
+                                placeholder="Xbox Series"
                                 disabled
                                 value={""}
                             />

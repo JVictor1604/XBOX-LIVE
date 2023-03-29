@@ -4,18 +4,28 @@ import { navigationItems } from "data/navegation";
 import * as S from "./style";
 import { Outlet } from "react-router-dom";
 import NavColumn from "components/NavColumn";
+import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
+
+    const navigate = useNavigate();
+
+    const handleNavigation = (path: RoutePath) => navigate(path);
+
     return (
         <S.Settings>
-            <Menu active={RoutePath.SETTINGS} navItems={navigationItems} />
+            <Menu
+                active={RoutePath.SETTINGS}
+                navItems={navigationItems} 
+                onNavigate={handleNavigation}
+                onLogout={() => navigate(RoutePath.LOGIN)}/>
             <S.SettingsPage>
                 <header>
                     <S.SettingsPageHeaderTitle>Configurações</S.SettingsPageHeaderTitle>
                 </header>
                 <S.SettingsContent>
                     <S.SettingsContentSidebar>
-                    <NavColumn />
+                        <NavColumn activeRoute={RoutePath.SETTINGS_PRODUCTS} />
                     </S.SettingsContentSidebar>
                     <S.SettingsContentBox>
                         <S.SettingsContentBoxEmpty>
