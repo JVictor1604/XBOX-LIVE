@@ -5,6 +5,7 @@ import * as S from "./style";
 import { RoutePath } from "types/routes";
 import NavColumnItem from "components/NavColumnItem";
 import { HTMLAttributes } from "react";
+import { useNavigate } from "react-router-dom";
 
 type NavColumnType = HTMLAttributes<HTMLDivElement>;
 
@@ -13,12 +14,15 @@ type NavColumnProps = {
 } & NavColumnType;
 
 const NavColumn = ({ activeRoute }: NavColumnProps) => {
+
+  const navigate = useNavigate();
+
   const items = [
     {
       icon: <Market />,
       title: "Selecione sua Plataforma",
       subtitle: "Escolha ou mescle plataformas",
-      navigation: RoutePath.SETTINGS_TABLES,
+      navigation: RoutePath.SETTINGS_PLATAFORM,
     },
     {
       icon: <Info />,
@@ -35,6 +39,7 @@ const NavColumn = ({ activeRoute }: NavColumnProps) => {
   ];
   return <S.NavColumn>{items.map((item, key) => (
     <NavColumnItem
+      onClick={() => navigate(item.navigation)}
       active={item.navigation === activeRoute}
       icon={item.icon}
       title={item.title}

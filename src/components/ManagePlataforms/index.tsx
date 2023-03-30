@@ -17,7 +17,7 @@ const ManagePlataforms = ({ ...props }: ManagePlataformsProps) => {
             <S.ManagePlataformsContent>
                 <S.ManagePlataformsContentAdd>
                     <Add />
-                    <span>Adicionar PLataforma</span>
+                    <span>Adicionar Plataforma</span>
                 </S.ManagePlataformsContentAdd>
                 <S.ManagePlataformsContentAdd>
                     <label htmlFor="plataformId">Nome da PLataforma</label>

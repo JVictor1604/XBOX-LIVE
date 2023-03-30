@@ -4,7 +4,7 @@ import { navigationItems } from "data/navegation";
 import * as S from "./style";
 import { Outlet } from "react-router-dom";
 import NavColumn from "components/NavColumn";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Settings = () => {
 
@@ -12,26 +12,34 @@ const Settings = () => {
 
     const handleNavigation = (path: RoutePath) => navigate(path);
 
+    const { pathname } = useLocation();
+
+    const splitterPath = (path: string) => path.split("/").pop() as RoutePath;
+    const path = splitterPath(pathname);
+
     return (
         <S.Settings>
             <Menu
                 active={RoutePath.SETTINGS}
-                navItems={navigationItems} 
+                navItems={navigationItems}
                 onNavigate={handleNavigation}
-                onLogout={() => navigate(RoutePath.LOGIN)}/>
+                onLogout={() => navigate(RoutePath.LOGIN)} />
             <S.SettingsPage>
                 <header>
                     <S.SettingsPageHeaderTitle>Configurações</S.SettingsPageHeaderTitle>
                 </header>
                 <S.SettingsContent>
                     <S.SettingsContentSidebar>
-                        <NavColumn activeRoute={RoutePath.SETTINGS_PRODUCTS} />
+                        <NavColumn activeRoute={path} />
                     </S.SettingsContentSidebar>
                     <S.SettingsContentBox>
-                        <S.SettingsContentBoxEmpty>
-                            Selecione uma categoria
-                        </S.SettingsContentBoxEmpty>
-                        <Outlet />
+                        {path === splitterPath(RoutePath.SETTINGS) ? (
+                            <S.SettingsContentBoxEmpty>
+                                Selecione uma categoria
+                            </S.SettingsContentBoxEmpty>
+                        ) : (
+                            <Outlet />
+                        )}
                     </S.SettingsContentBox>
                 </S.SettingsContent>
             </S.SettingsPage>
